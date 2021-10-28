@@ -84,7 +84,7 @@ Toaster.confirm('Press yes or no',
 
 ### Alert Dialog
 
-To display an alrt dialog, import Toaster and use Toaster.alert()
+To display an alert dialog, import Toaster and use Toaster.alert()
 
 ```ts
 Toaster.alert('Press Ok', 'Alert title');
@@ -122,3 +122,18 @@ private get toasterOptions() {
   }
 }
 ```
+
+#### An example of toasterOptions that changes, for instance, ```showCloseButton``` = false
+
+```html
+<toaster :options="myOptions">
+```
+```ts
+private get myOptions {
+  return {
+    showCloseButton: false
+  };
+}
+```
+
+This would leave all of the default options values intact except for ```showCloseButton``` which would be changed to false.
