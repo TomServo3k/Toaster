@@ -2,11 +2,11 @@
 ## A Toast and Confirmation Component for VuetifyJs
 
 Toaster allows you to generate small popup (toast) messages that wil
-appear in any corner or top center, middle or bottom center of the screen. These messages can be displayed for a configurable amount of time, with or without a countdown and close button. The can also be left open until the user responds to them.
+appear in any corner, left middle, top center, right middle, bottom center or center of the screen. These messages can be displayed for a configurable amount of time, with or without a countdown and close button. They can also be left open until the user responds to them by clicking the close button.
 
-Toast message exist if different colors for Information, Warning and Error. By default, error toasts remain until the user closes them.
+Toast message exist in different colors for Information (green), Warning (yellow) and Error (red). The colors are configurable. By default, error toasts remain until the user closes them.
 
-All toast messages (or only a configurable subset by type) are remembered and can be retrieved by clicking the toast icon in the lower right corner of the screen, which shows if any toasts are available for redisplay.
+All toast messages (or only a configurable subset by type) are stored and can be retrieved by clicking the toast icon in the lower right corner of the screen, which appears if any toasts are available for redisplay.
 
 Toaster also provides screen centered alert and confirmation dialogs with configurable title, message, button text and header color.
 
@@ -25,9 +25,9 @@ Import Toaster as a component in a global vue template, such as the class that c
 </template>
 ```
 
-Place ``` <Toaster /> ``` as above, with optional 'options'. You will also need to import Toaster.vue and specify it as a Component.
+Place ``` <Toaster /> ``` as above, with the optional ':options' attribute if you like. You will also need to import Toaster.vue and specify it as a Component.
 
-Then anywhere you want to display a toast message, import Toaster and use directly or create simple toast functions.
+Then anywhere you want to display a toast message, import Toaster and use it directly or create simple toast wrapper functions.
 
 ### Import and Declare Toaster (TypeScript Example)
 
@@ -43,7 +43,7 @@ import Toaster from '@/components/Toaster.vue'; // do not include in the templat
 
 ### Static toast examples
 
-```
+```ts
 // green in bottom right corner, times out after 4 seconds
 Toaster.info(text);
 
