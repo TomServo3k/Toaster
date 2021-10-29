@@ -1,0 +1,28 @@
+{
+  "name": "v-toaster",
+  "version": "1.0.0",
+  "description": "Toaster popups for vuetifyjs by Tom Faust Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomServo3k/Toaster.git"
+  },
+  "keywords": [
+    "toaster",
+    "toast",
+    "vuetify",
+    "vue",
+    "faustware",
+    "confirm",
+    "alert"
+  ],
+  "author": "Tom Faust",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/TomServo3k/Toaster/issues"
+  },
+  "homepage": "https://github.com/TomServo3k/Toaster#readme"
+}
