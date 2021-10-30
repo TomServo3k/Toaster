@@ -1,5 +1,5 @@
 {
-  "name": "v-toaster",
+  "name": "vuetify-toaster",
   "version": "1.0.0",
   "description": "Toaster popups for vuetifyjs by Tom Faust Software",
   "main": "index.js",
@@ -12,6 +12,8 @@
   },
   "keywords": [
     "toaster",
+    "v-toaster",
+    "vuetify-toaster",
     "toast",
     "vuetify",
     "vue",

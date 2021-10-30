@@ -167,29 +167,31 @@
         </v-card>
       </v-dialog>
     </div>
-
+  
   </div>
 </template>
 
 <script lang="ts">
-
+  
   import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
-
+  
   const indefiniteToast = 0; // with vuetify version > 2.3 we'll need to change this to -1
   const aDay: number = 86400000;
-
-
+  
+  
   @Component
   export default class Toaster extends Vue {
 
+    name: 'v-toaster';
+    
     @Prop({ required: false, default: function () { return {}; } }) private options!: any;
-
+    
     // local event bus
-
+    
     private static EventBus = new Vue();
-
+    
     // toast message types
-
+    
     private static readonly toastInfo: string = 'toastInfo';
     private static readonly toastWarn: string = 'toastWarn';
     private static readonly toastError: string = 'toastError';
@@ -200,9 +202,20 @@
     private static readonly closeAlertDialog: string = 'closeAlert';
     private static readonly showNotificationDialog: string = 'showNotificationList';
     private static readonly clearNotificationList: string = 'clearNotificationList';
-
+    
+    // locations for toast popups
+    public static readonly TopLeft: number = 1;
+    public static readonly TopCenter: number = 2;
+    public static readonly TopRight: number = 3;
+    public static readonly Center: number = 4;
+    public static readonly BottomLeft: number = 5;
+    public static readonly BottomCenter: number = 6;
+    public static readonly BottomRight: number = 7;
+    
+    // public functions
+    
     // constants for Vue template
-
+    
     private readonly topLeft: number = Toaster.TopLeft;
     private readonly topCenter: number = Toaster.TopCenter;
     private readonly topRight: number = Toaster.TopRight;
@@ -210,7 +223,7 @@
     private readonly bottomLeft: number = Toaster.BottomLeft;
     private readonly bottomCenter: number = Toaster.BottomCenter;
     private readonly bottomRight: number = Toaster.BottomRight;
-
+    
     // control variables for Vue
     
     // toast popups
@@ -220,7 +233,7 @@
     private toastTimeout: number = this.toasterOptions.timeout;
     private toastColor: string = this.toasterOptions.infoColor;
     private toastLocation: number = this.toasterOptions.location
-
+    
     // confirm dialog
     private showConfirm: boolean = false;
     private confirmTitle: string = 'Please confirm';
@@ -229,7 +242,7 @@
     private noPrompt: string = 'No';
     private yesCallback: Function = () => { }
     private noCallback: Function = () => { }
-
+    
     // alert dialog
     private showAlert: boolean = false;
     private alertTitle: string = '';
@@ -237,29 +250,18 @@
     private alertCallback: Function = () => { }
     private okPrompt: string = 'Yes';
     private countDownTime: number = 0;
-
+    
     // for confirm and alert messages
     private headerColor: string = this.toasterOptions.headerColor;
-
+    
     private static notifications: any[] = [];
     private anyNotifications: boolean = false;
     private showNotifications: boolean = false;
-
+    
     // alternate timeout values
     public static readonly CantClose: number = -1;    // user is not allowed to close the toast
     public static readonly WaitForClose: number = 0;  // toast will not timeout and a Close button is displayed
-
-    // locations for toast popups
-    public static readonly TopLeft: number = 1;
-    public static readonly TopCenter: number = 2;
-    public static readonly TopRight: number = 3;
-    public static readonly Center: number = 4;
-    public static readonly BottomLeft: number = 5;
-    public static readonly BottomCenter: number = 6;
-    public static readonly BottomRight: number = 7;
-
-    // public functions
-
+    
     public static info(message: string, timeout: number = 4000, location: number | undefined = undefined ): void {
       Toaster.EventBus.$emit(Toaster.toastInfo, { message: message, color: 'infoColor', timeout: timeout, location: location, type: 'info' });
     }
@@ -301,7 +303,7 @@
     }
 
     // private functions
-
+    
     private getColor(name: string): string {
       let color = '';
       switch (name) {
@@ -344,7 +346,7 @@
       Toaster.notifications.push({date: new Date(), params: params});
       this.anyNotifications = true;
     }
-
+    
     private closeToast(): void {
       this.showToaster = false;
       this.showOverlay = false;
@@ -428,9 +430,8 @@
         this.setOpenNotifications(false);
         this.anyNotifications = false;
       }
-      this.$forceUpdate();
     }
-
+    
     private formatDate(date: Date): string {
       let a = 'AM';
       let h = 0;

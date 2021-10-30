@@ -18,27 +18,31 @@ Import Toaster as a component in a global vue template, such as the class that c
 <template>
   <div>
     <transition name="hub-router-transition" mode="out-in">
-        <router-view :key="$route.fullPath"/>
+      <router-view :key="$route.fullPath"/>
     </transition>
-    <toaster :options="toasterOptions" />
+    <v-toaster :options="toasterOptions" /> <!-- Add this line -->
   </div>
 </template>
 ```
 
-Place ``` <Toaster /> ``` as above, with the optional ':options' attribute if you like. You will also need to import Toaster.vue and specify it as a Component.
+```ts
+import Toaster from 'vuetify-toaster';  // Add this line
+
+@Components({
+  component: {
+    Toaster // Add this line
+  }
+})
+```
+
+On the ``` <v-toaster /> ``` line, the ':options' attribute is optional.
 
 Then anywhere you want to display a toast message, import Toaster and use it directly or create simple toast wrapper functions.
 
 ### Import and Declare Toaster (TypeScript Example)
 
 ```ts
-import Toaster from '@/components/Toaster.vue'; // do not include in the template or add as a component!
-
-@Components({
-  component: {
-    Toaster
-  }
-})
+import Toaster from 'vuetify-toaster'; // do not include in the template or add as a component!
 ```
 
 ### Static toast examples
